@@ -1,0 +1,159 @@
+* {
+	margin:0;
+	padding:0;
+}
+body  {
+	font-family:Georgia,"Times New Roman",Times,serif;
+	font-size:12px;
+	background: #823037;
+	color: #ffffff;
+}
+#container { 
+	width: 858px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+} 
+#header {
+	height:315px; 
+} 
+#header h1 {
+	font-size:44px;
+	letter-spacing:-1px;
+	text-transform:lowercase;
+	font-weight:inherit;
+	padding:27px 0 0 20px;
+	float:left;
+}
+.headerPic {
+	padding-top:11px;
+}
+#sidebar1 {
+	float: right; /* since this element is floated, a width must be given */
+	width: 226px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	margin:10px 0 0 0;
+}
+#mainContent { 
+	margin: 10px 239px 0 0; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+
+}
+.title {
+background:url(images/h2Background.jpg) no-repeat left top;
+height:41px;
+margin:0 9px;
+} 
+.title2 {
+background:url(images/rightTitleBackground.jpg) no-repeat left top;
+height:41px;
+margin:0 9px;
+color:#FFFFFF;
+} 
+#leftTop {	
+	background:url(images/leftTop.gif) no-repeat left top;
+	height:7px;
+}
+#leftBottom {	
+	background:url(images/leftBottom.gif) no-repeat left top;
+	height:8px;
+}
+#leftCenter {
+	background-color:#6b1f25;
+}
+#leftCenter h2 {
+	font-size:22px;
+	padding:5px 0 0 10px;
+}
+#leftCenter p {
+	margin:10px 9px 0 9px;
+}
+#leftCenter .pic1 {
+	float:right;
+	margin:0 0 10px 15px;
+}
+.rightTop {
+	background:url(images/rightTop.gif) no-repeat left top;
+	height:7px;
+}
+#rightCenter, #rightCenter2 {
+	background-color:#e0d4c6;
+	color:#60171d;
+}
+#rightCenter h2, #rightCenter2 h2 {
+	font-size:22px;
+	padding:5px 0 0 10px;
+}
+#rightCenter ul, #rightCenter2 ul {
+	padding:10px;}
+#rightCenter2 li {
+	list-style:none;
+	padding:4px 0;
+	background:url(images/p2.jpg) no-repeat left 5px;
+	padding-left:17px;
+}
+#rightCenter li {
+	list-style:none;
+	padding:4px 0;
+	background:url(images/p.jpg) no-repeat left 5px;
+	padding-left:17px;
+}
+.rightBottom {
+	background:url(images/rightBottom.gif) no-repeat left top;
+	height:7px;
+}
+#footer {
+	background:url(images/footerBackground.jpg) no-repeat left top;
+	height:77px;
+	margin:10px 0;
+	text-align:center;
+} 
+#footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 20px 0 0 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+#footer a, #leftCenter a {
+	color:#db989e;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+#menuContainer {
+	background:url(images/menuBackground.jpg) no-repeat left top;
+	width:858px;
+	height:97px;
+}
+#navcontainer {
+	float:right;
+	padding:45px 10px 0 0;
+}
+#navcontainer ul
+{
+padding-left: 0;
+margin-left: 0;
+color: White;
+float: left;
+width: 100%;
+}
+
+#navcontainer ul li { display: inline; }
+
+#navcontainer ul li a
+{
+padding: 0.2em 1em;
+color: White;
+text-decoration: none;
+float: left;
+font-size:18px;
+}
+
+
+#navcontainer ul li a:hover
+{
+background-color: #8b464c;
+color: #fff;
+}
+#navcontainer #active a
+{
+background-color: #8b464c;
+color: #fff;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liars Dice in Amber</title>
+    <script src="../../js/amber.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	  loadAmber({
+		files: ['Dice.js'],
+		prefix: 'projects/dice/js',
+			ready: function() {
+				$(function() {
+					smalltalk.TavernDiceView._new()._example();
+				});
+			}
+	   }); 
+	</script>
+  </head>
+  <body>
+  </body>
+</html>
+ 
