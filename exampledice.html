@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liars Dice in Amber</title>
+    <script src="../../js/amber.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	  loadAmber({
+		files: ['Dice.js'],
+		prefix: 'projects/diceInAmber/js',
+			ready: function() {
+				$(function() {
+					smalltalk.DiceView._new()._example();
+				});
+			}
+	   }); 
+	</script>
+  </head>
+  <body>
+	  <button onClick="smalltalk.DiceView._new()._example()">Roll</button>
+	  <button onClick="smalltalk.Browser._open()"> Class browser</button>
+  </body>
+</html>
+ 
