@@ -1,4 +1,18 @@
 smalltalk.addPackage('Dice', {});
+smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas'], 'Dice');
+smalltalk.addMethod(
+unescape('_model'),
+smalltalk.method({
+selector: unescape('model'),
+fn: function (){
+var self=this;
+return self['@model'];
+return self;}
+}),
+smalltalk.TDWidget);
+
+
+
 smalltalk.addClass('Dice', smalltalk.Object, ['id', 'gameID', 'liarID', 'dice', 'numDice', 'numSides'], 'Dice');
 smalltalk.addMethod(
 unescape('_roll'),
@@ -215,10 +229,12 @@ smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
 selector: unescape('initialize'),
-fn: function (){
-var self=this;
-(self['@taverns']=smalltalk.send((smalltalk.OrderedCollection || OrderedCollection), "_new", []));
-return self;}
+fn: function () {
+    var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
+    self['@taverns'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
+    return self;
+}
 }),
 smalltalk.TavernDice);
 
@@ -263,11 +279,11 @@ smalltalk.addMethod(
 unescape('_on_'),
 smalltalk.method({
 selector: unescape('on%3A'),
-fn: function (aTavernDice){
-var self=this;
-smalltalk.send(self, "_model_", [aTavernDice]);
-smalltalk.send(self, "_createImagePaths", []);
-return self;}
+fn: function (aTavernDice) {
+    var self = this;
+    smalltalk.send(self, "_model_", [aTavernDice]);
+    return self;
+}
 }),
 smalltalk.TavernDiceView);
 
@@ -330,6 +346,7 @@ smalltalk.method({
 selector: unescape('initialize'),
 fn: function (){
 var self=this;
+smalltalk.send(self, "_initialize", [], smalltalk.Widget);
 smalltalk.send(self, "_createImagePaths", []);
 return self;}
 }),
@@ -473,32 +490,7 @@ smalltalk.Player);
 
 
 
-smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas', 'element'], 'Dice');
-smalltalk.addMethod(
-unescape('_model_'),
-smalltalk.method({
-selector: unescape('model%3A'),
-fn: function (aModel){
-var self=this;
-(self['@model']=aModel);
-return self;}
-}),
-smalltalk.TDWidget);
-
-
-smalltalk.addMethod(
-unescape('_on_'),
-smalltalk.method({
-selector: unescape('on%3A'),
-fn: function (aModel){
-var self=this;
-return smalltalk.send(smalltalk.send(self, "_new", []), "_model_", [aModel]);
-return self;}
-}),
-smalltalk.TDWidget.klass);
-
-
-smalltalk.addClass('DiceView', smalltalk.TDWidget, [], 'Dice');
+smalltalk.addClass('DiceView', smalltalk.TDWidget, ['imagePaths', 'diceShowing', 'diceDiv'], 'Dice');
 
 
 smalltalk.addClass('GameView', smalltalk.TDWidget, [], 'Dice');

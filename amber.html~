@@ -9,8 +9,8 @@
       <h1>Liars Dice in Amber</h1>
 		<script type="text/javascript">
 		  loadAmber({
-			files: ['Dice.js'],
-			prefix: 'projects/diceInAmber/js',
+			files: [],
+			prefix: 'projects/dice/js',
 			ready: function() {
 			smalltalk.Browser._open();
 			}}); 

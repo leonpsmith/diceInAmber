@@ -1,4 +1,23 @@
 smalltalk.addPackage('Dice', {});
+smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas'], 'Dice');
+smalltalk.addMethod(
+unescape('_model'),
+smalltalk.method({
+selector: unescape('model'),
+category: 'access',
+fn: function (){
+var self=this;
+return self['@model'];
+return self;},
+args: [],
+source: unescape('model%0A%09%22return%20the%20model%20that%20I%20am%20viewing%22%0A%0A%09%5E%20model'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.TDWidget);
+
+
+
 smalltalk.addClass('Dice', smalltalk.Object, ['id', 'gameID', 'liarID', 'dice', 'numDice', 'numSides'], 'Dice');
 smalltalk.Dice.comment=unescape('I%20represent%20a%20number%20of%20individual%20die%20%28dice%29%20to%20form%20what%20we%20refer%20to%20as%20a%20set%20of%20Dice%20for%20a%20given%20player')
 smalltalk.addMethod(
@@ -27,13 +46,14 @@ selector: unescape('initialize'),
 category: 'initialization',
 fn: function (){
 var self=this;
+smalltalk.send(self, "_initialize", [], smalltalk.Object);
 (self['@numDice']=(5));
 (self['@numSides']=(6));
 smalltalk.send(self, "_roll", []);
 return self;},
 args: [],
 source: unescape('initialize%0A%09%22make%20sure%20I%20have%20the%20bare%20minimum%20of%20state%20required%20to%20call%20myself%20a%20set%20of%20dice%22%0A%0A%09super%20initialize.%0A%09numDice%20%3A%3D%205.%0A%09numSides%20%3A%3D%206.%0A%09self%20roll.%0A'),
-messageSends: ["roll"],
+messageSends: ["initialize", "roll"],
 referencedClasses: []
 }),
 smalltalk.Dice);
@@ -157,12 +177,13 @@ selector: unescape('initialize'),
 category: 'initialization',
 fn: function () {
     var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
     self['@games'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
     return self;
 },
 args: [],
 source: unescape('initialize%0A%09%22get%20ready%20to%20roll%22%0A%0A%09super%20initialize.%0A%20%09games%20%3A%3D%20OrderedCollection%20new.%0A'),
-messageSends: ["new"],
+messageSends: ["initialize", "new"],
 referencedClasses: ["OrderedCollection"]
 }),
 smalltalk.Tavern);
@@ -296,13 +317,15 @@ unescape('_initialize'),
 smalltalk.method({
 selector: unescape('initialize'),
 category: 'initialization',
-fn: function (){
-var self=this;
-(self['@taverns']=smalltalk.send((smalltalk.OrderedCollection || OrderedCollection), "_new", []));
-return self;},
+fn: function () {
+    var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
+    self['@taverns'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
+    return self;
+},
 args: [],
-source: unescape('initialize%0A%09taverns%20%3A%3D%20OrderedCollection%20new.%0A%09'),
-messageSends: ["new"],
+source: unescape('initialize%0A%09super%20initialize.%0A%09taverns%20%3A%3D%20OrderedCollection%20new.%0A%09'),
+messageSends: ["initialize", "new"],
 referencedClasses: ["OrderedCollection"]
 }),
 smalltalk.TavernDice);
@@ -364,14 +387,14 @@ unescape('_on_'),
 smalltalk.method({
 selector: unescape('on%3A'),
 category: 'mvc',
-fn: function (aTavernDice){
-var self=this;
-smalltalk.send(self, "_model_", [aTavernDice]);
-smalltalk.send(self, "_createImagePaths", []);
-return self;},
+fn: function (aTavernDice) {
+    var self = this;
+    smalltalk.send(self, "_model_", [aTavernDice]);
+    return self;
+},
 args: ["aTavernDice"],
-source: unescape('on%3A%20aTavernDice%0A%09%22create%20an%20instance%20of%20my%20class%20ready%20to%20display%20aTavernDice%20model.%20Hopefuly%20the%20model%20will%20have%20no%20knowledge%20of%20us%20so%20we%20can%20implement%20new%20views%20at%20will%22%0A%0A%20%20%20%20%20%20%20%20self%20model%3A%20aTavernDice.%0A%09self%20createImagePaths'),
-messageSends: ["model:", "createImagePaths"],
+source: unescape('on%3A%20aTavernDice%0A%09%22create%20an%20instance%20of%20my%20class%20ready%20to%20display%20aTavernDice%20model.%20Hopefuly%20the%20model%20will%20have%20no%20knowledge%20of%20us%20so%20we%20can%20implement%20new%20views%20at%20will%22%0A%0A%20%20%20%20%20%20%20%20%20%20self%20model%3A%20aTavernDice'),
+messageSends: ["model:"],
 referencedClasses: []
 }),
 smalltalk.TavernDiceView);
@@ -456,11 +479,12 @@ selector: unescape('initialize'),
 category: 'rendering',
 fn: function (){
 var self=this;
+smalltalk.send(self, "_initialize", [], smalltalk.Widget);
 smalltalk.send(self, "_createImagePaths", []);
 return self;},
 args: [],
-source: unescape('initialize%0A%09%22comment%20stating%20purpose%20of%20message%22%0A%0A%09self%20createImagePaths.%0A%0A%20'),
-messageSends: ["createImagePaths"],
+source: unescape('initialize%0A%09%22comment%20stating%20purpose%20of%20message%22%0A%0A%20%20%20%20%20%20%20%20super%20initialize.%0A%09self%20createImagePaths.%0A%0A%20'),
+messageSends: ["initialize", "createImagePaths"],
 referencedClasses: []
 }),
 smalltalk.TavernDiceView);
@@ -606,12 +630,13 @@ selector: unescape('initialize'),
 category: 'initialization',
 fn: function () {
     var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
     self['@dice'] = smalltalk.send(smalltalk.Dice || Dice, "_new", []);
     return self;
 },
 args: [],
 source: unescape('initialize%0A%09%22get%20ready%20to%20be%20used%22%0A%0A%09super%20initialize.%0A%09dice%20%3A%3D%20Dice%20new.'),
-messageSends: ["new"],
+messageSends: ["initialize", "new"],
 referencedClasses: ["Dice"]
 }),
 smalltalk.Player);
@@ -652,50 +677,15 @@ smalltalk.Player);
 
 
 
-smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas', 'element'], 'Dice');
-smalltalk.addMethod(
-unescape('_model_'),
-smalltalk.method({
-selector: unescape('model%3A'),
-category: 'accessing',
-fn: function (aModel){
-var self=this;
-(self['@model']=aModel);
-return self;},
-args: ["aModel"],
-source: unescape('model%3A%20aModel%0A%09%22hold%20on%20to%20the%20object%20that%20I%20will%20be%20a%20view%20for%22%0A%0A%09model%20%3A%3D%20aModel'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.TDWidget);
+smalltalk.addClass('DiceView', smalltalk.TDWidget, ['imagePaths', 'diceShowing', 'diceDiv'], 'Dice');
 
 
-smalltalk.addMethod(
-unescape('_on_'),
-smalltalk.method({
-selector: unescape('on%3A'),
-category: 'instantiation',
-fn: function (aModel){
-var self=this;
-return smalltalk.send(smalltalk.send(self, "_new", []), "_model_", [aModel]);
-return self;},
-args: ["aModel"],
-source: unescape('on%3A%20aModel%0A%09%22return%20an%20instance%20of%20myself%20to%20view%20aModel%22%0A%0A%09%5E%20self%20new%20model%3A%20aModel'),
-messageSends: ["model:", "new"],
-referencedClasses: []
-}),
-smalltalk.TDWidget.klass);
+smalltalk.addClass('GameView', smalltalk.TDWidget, [], 'Dice');
 
 
-smalltalk.addClass('DiceView', smalltalk.Widget, [], 'Dice');
+smalltalk.addClass('PlayerView', smalltalk.TDWidget, [], 'Dice');
 
 
-smalltalk.addClass('GameView', smalltalk.Widget, [], 'Dice');
-
-
-smalltalk.addClass('PlayerView', smalltalk.Widget, [], 'Dice');
-
-
-smalltalk.addClass('TavernView', smalltalk.Widget, [], 'Dice');
+smalltalk.addClass('TavernView', smalltalk.TDWidget, [], 'Dice');
 
 

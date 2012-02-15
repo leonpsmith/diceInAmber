@@ -1,4 +1,16 @@
 Smalltalk current createPackage: 'Dice' properties: #{}!
+Widget subclass: #TDWidget
+	instanceVariableNames: 'model canvas'
+	category: 'Dice'!
+
+!TDWidget methodsFor: 'access'!
+
+model
+	"return the model that I am viewing"
+
+	^ model
+! !
+
 Object subclass: #Dice
 	instanceVariableNames: 'id gameID liarID dice numDice numSides'
 	category: 'Dice'!
@@ -8,7 +20,7 @@ I represent a number of individual die (dice) to form what we refer to as a set 
 !Dice methodsFor: 'access'!
 
 setNumDice: num
-	"set the number of dice left in this player's hand"
+	"set the number of dice ledt in this player's hand"
 
 	numDice := num.
 !
@@ -37,6 +49,7 @@ getNumSides
 initialize
 	"make sure I have the bare minimum of state required to call myself a set of dice"
 
+	super initialize.
 	numDice := 5.
 	numSides := 6.
 	self roll.
@@ -106,6 +119,7 @@ getName
 initialize
 	"get ready to roll"
 
+	super initialize.
  	games := OrderedCollection new.
 ! !
 
@@ -124,7 +138,7 @@ players
 !Game methodsFor: 'initialization'!
 
 initialize
-	"what I need to exist"
+	"comment stating purpose of message"
 
 	players := OrderedCollection new.
 	started := Date now asMilliseconds.
@@ -176,6 +190,7 @@ example
 !TavernDice methodsFor: 'initialization'!
 
 initialize
+	super initialize.
 	taverns := OrderedCollection new.
 ! !
 
@@ -187,7 +202,7 @@ example
 	^ self new example.
 ! !
 
-Widget subclass: #TavernDiceView
+TDWidget subclass: #TavernDiceView
 	instanceVariableNames: 'imagePaths header diceShowing diceDiv'
 	category: 'Dice'!
 
@@ -205,8 +220,7 @@ example
 on: aTavernDice
 	"create an instance of my class ready to display aTavernDice model. Hopefuly the model will have no knowledge of us so we can implement new views at will"
 
-        self model: aTavernDice.
-	self createImagePaths
+          self model: aTavernDice
 !
 
 model: aModel
@@ -262,6 +276,7 @@ renderDice: aDice on: html
 initialize
 	"comment stating purpose of message"
 
+        super initialize.
 	self createImagePaths.
 !
 
@@ -366,42 +381,23 @@ example
 initialize
 	"get ready to be used"
 
+	super initialize.
 	dice := Dice new.
 ! !
 
-Widget subclass: #TDWidget
-	instanceVariableNames: 'model canvas element'
+TDWidget subclass: #DiceView
+	instanceVariableNames: 'imagePaths diceShowing diceDiv'
 	category: 'Dice'!
 
-!TDWidget methodsFor: 'accessing'!
-
-model: aModel
-	"hold on to the object that I will be a view for"
-
-	model := aModel
-! !
-
-!TDWidget class methodsFor: 'instantiation'!
-
-on: aModel
-	"return an instance of myself to view aModel"
-
-	^ self new model: aModel
-! !
-
-Widget subclass: #DiceView
+TDWidget subclass: #GameView
 	instanceVariableNames: ''
 	category: 'Dice'!
 
-Widget subclass: #GameView
+TDWidget subclass: #PlayerView
 	instanceVariableNames: ''
 	category: 'Dice'!
 
-Widget subclass: #PlayerView
-	instanceVariableNames: ''
-	category: 'Dice'!
-
-Widget subclass: #TavernView
+TDWidget subclass: #TavernView
 	instanceVariableNames: ''
 	category: 'Dice'!
 
