@@ -322,13 +322,13 @@ category: 'rolling',
 fn: function (){
 var self=this;
 var val=nil;
-(self['@dice']=smalltalk.send((smalltalk.Array || Array), "_new_", [smalltalk.send(self, "_getNumDice", [])]));
-smalltalk.send((1), "_to_do_", [smalltalk.send(self, "_getNumDice", []), (function(i){(val=smalltalk.send(smalltalk.send((1), "_to_", [self['@numSides']]), "_atRandom", []));return smalltalk.send(self['@dice'], "_at_put_", [i, val]);})]);
+(self['@dice']=smalltalk.send((smalltalk.Array || Array), "_new_", [self['@numDice']]));
+smalltalk.send((1), "_to_do_", [self['@numDice'], (function(i){(val=smalltalk.send(smalltalk.send((1), "_to_", [self['@numSides']]), "_atRandom", []));return smalltalk.send(self['@dice'], "_at_put_", [i, val]);})]);
 return self['@dice'];
 return self;},
 args: [],
-source: unescape('roll%0A%09%22roll%20my%20dice%20randomly%22%0A%0A%09%7C%20%20val%20%7C%0A%09dice%20%3A%3D%20Array%20new%3A%20%28self%20getNumDice%29.%0A%091%20to%3A%20%28%20self%20getNumDice%20%29%20do%3A%5B%20%3Ai%20%7C%0A%09%09%22this%20hardcoded%20value%20of%206%20will%20need%20to%20change%20if%20normal%20dice%20ever%20have%20more%20or%20less%20sides%22%0A%09%09val%20%3A%3D%20%28%201%20to%3A%20%28%20numSides%20%29%29%20atRandom.%0A%09%09dice%20at%3A%20i%20put%3A%20val.%0A%09%5D.%0A%09%5E%20dice%0A%09'),
-messageSends: ["new:", "getNumDice", "to:do:", "atRandom", "to:", "at:put:"],
+source: unescape('roll%0A%09%22roll%20my%20dice%20randomly%22%0A%0A%09%7C%20%20val%20%7C%0A%09dice%20%3A%3D%20Array%20new%3A%20numDice.%0A%091%20to%3A%20numDice%20do%3A%5B%20%3Ai%20%7C%0A%09%09val%20%3A%3D%20%28%201%20to%3A%20%28%20numSides%20%29%29%20atRandom.%0A%09%09dice%20at%3A%20i%20put%3A%20val.%0A%09%5D.%0A%09%5E%20dice%0A%09'),
+messageSends: ["new:", "to:do:", "atRandom", "to:", "at:put:"],
 referencedClasses: ["Array"]
 }),
 smalltalk.Dice);
@@ -369,38 +369,6 @@ referencedClasses: []
 smalltalk.Dice);
 
 smalltalk.addMethod(
-unescape('_setNumDice_'),
-smalltalk.method({
-selector: unescape('setNumDice%3A'),
-category: 'access',
-fn: function (num){
-var self=this;
-(self['@numDice']=num);
-return self;},
-args: ["num"],
-source: unescape('setNumDice%3A%20num%0A%09%22set%20the%20number%20of%20dice%20ledt%20in%20this%20player%27s%20hand%22%0A%0A%09numDice%20%3A%3D%20num.%0A'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
-unescape('_getNumDice'),
-smalltalk.method({
-selector: unescape('getNumDice'),
-category: 'access',
-fn: function (){
-var self=this;
-return self['@numDice'];
-return self;},
-args: [],
-source: unescape('getNumDice%0A%09%22the%20number%20of%20dice%20ledt%20in%20this%20player%27s%20hand%22%0A%0A%09%5E%20numDice'),
-messageSends: [],
-referencedClasses: []
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
 unescape('_at_'),
 smalltalk.method({
 selector: unescape('at%3A'),
@@ -417,23 +385,6 @@ referencedClasses: []
 smalltalk.Dice);
 
 smalltalk.addMethod(
-unescape('_getNumSides'),
-smalltalk.method({
-selector: unescape('getNumSides'),
-category: 'access',
-fn: function (){
-var self=this;
-smalltalk.send(smalltalk.send(self['@numSides'], "_isNil", []), "_iftrue_", [(function(){return (self['@numSides']=(6));})]);
-return self['@numSides'];
-return self;},
-args: [],
-source: unescape('getNumSides%0A%09%22return%20the%20number%20of%20sides%20on%20a%20dice%22%0A%0A%09numSides%20isNil%20iftrue%3A%5B%20numSides%20%3A%3D%206%5D.%0A%09%5E%20numSides'),
-messageSends: ["iftrue:", "isNil"],
-referencedClasses: []
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
 unescape('_remove'),
 smalltalk.method({
 selector: unescape('remove'),
@@ -445,6 +396,22 @@ return self;},
 args: [],
 source: unescape('remove%0A%09%22looks%20like%20Player%20lost%20a%20Die%22%0A%0A%09dice%20removeLast.%0A'),
 messageSends: ["removeLast"],
+referencedClasses: []
+}),
+smalltalk.Dice);
+
+smalltalk.addMethod(
+unescape('_getDice'),
+smalltalk.method({
+selector: unescape('getDice'),
+category: 'access',
+fn: function (){
+var self=this;
+return self['@dice'];
+return self;},
+args: [],
+source: unescape('getDice%0A%09%22return%20the%20low%20level%20array%20of%20values.%20Only%20meant%20to%20be%20used%20by%20views%20and%20the%20like%22%0A%0A%09%5E%20dice'),
+messageSends: [],
 referencedClasses: []
 }),
 smalltalk.Dice);
@@ -497,6 +464,22 @@ return self;},
 args: ["aModel"],
 source: unescape('on%3A%20aModel%0A%09%22set%20the%20model%20that%20I%20am%20viewing%20-%20the%20same%20as%20calling%20the%20setter%2C%20just%20a%20matter%20of%20preference%22%0A%0A%09model%20%3A%3D%20aModel'),
 messageSends: [],
+referencedClasses: []
+}),
+smalltalk.TDWidget);
+
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+category: 'initialization',
+fn: function (){
+var self=this;
+smalltalk.send(self, "_initialize", [], smalltalk.Widget);
+return self;},
+args: [],
+source: unescape('initialize%0A%09super%20initialize'),
+messageSends: ["initialize"],
 referencedClasses: []
 }),
 smalltalk.TDWidget);
@@ -751,15 +734,13 @@ fn: function (html){
 var self=this;
 var imageSrc=nil;
 var diceNum=nil;
-var diceShowing=nil;
-(self['@diceShowing']=smalltalk.send(self['@model'], "_diceLeft", []));
 ((($receiver = smalltalk.send(self['@element'], "_isNil", [])).klass === smalltalk.Boolean) ? ($receiver ? (function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})]));
 smalltalk.send(self['@element'], "_empty", []);
 smalltalk.send(self['@element'], "_contents_", [(function(){return smalltalk.send((1), "_to_do_", [smalltalk.send(self['@model'], "_size", []), (function(index){(diceNum=smalltalk.send(self['@model'], "_at_", [index]));(imageSrc=smalltalk.send(self['@imagePaths'], "_at_", [diceNum]));return (function($rec){smalltalk.send($rec, "_height_", [(100)]);smalltalk.send($rec, "_width_", [(100)]);return smalltalk.send($rec, "_style_", [unescape("margin-right%3A15px%3B")]);})(smalltalk.send(html, "_img_", [imageSrc]));})]);})]);
 return self;},
 args: ["html"],
-source: unescape('renderOn%3A%20html%0A%09%22we%20should%20already%20know%20the%20dice%20that%20we%20are%20displaying%20by%20asking%20the%20model%20%28we%20start%20with%20a%20set%20number%2C%20but%20the%20player%20can%20lose%20one%20at%20each%20turn%29.%20We%20also%20save%20the%20HTML%20element%20%28usually%20a%20div%29%20so%20we%20can%20replace%20its%20contents.%0A%09diceLeft%20is%20a%20Dice%20Object%20that%20contains%20an%20array%20of%20values%20representing%20the%20value%20of%20each%20die%20and%20allows%20us%20to%20choose%20the%20correct%20image%20for%20that%20die%20from%20the%20collection%20of%20imagePaths%22%0A%0A%09%7C%20imageSrc%20diceNum%20diceShowing%20%7C%0A%0A%09diceShowing%20%3A%3D%20model%20diceLeft.%0A%09element%20isNil%20ifTrue%3A%5B%0A%09%09element%20%3A%3D%20html%20div.%0A%09%09element%20id%3A%20%27dice%27%20.%0A%09%5D.%0A%09element%20empty.%0A%09element%20contents%3A%5B%0A%09%091%20to%3A%20%28model%20size%29%20do%3A%5B%20%3Aindex%20%7C%0A%09%09%09diceNum%20%3A%3D%20model%20at%3A%20index.%0A%09%09%09imageSrc%20%3A%3D%20imagePaths%20at%3A%20diceNum.%0A%09%09%09%28html%20img%3A%20imageSrc%29%20%20height%3A100%3B%20width%3A%20100%3B%20style%3A%20%27margin-right%3A15px%3B%27.%0A%09%09%5D.%0A%09%5D.%0A'),
-messageSends: ["diceLeft", "ifTrue:", "isNil", "div", "id:", "empty", "contents:", "to:do:", "size", "at:", "height:", "width:", "style:", "img:"],
+source: unescape('renderOn%3A%20html%0A%09%22we%20should%20already%20know%20the%20dice%20that%20we%20are%20displaying%20by%20asking%20the%20model%20%28we%20start%20with%20a%20set%20number%2C%20but%20the%20player%20can%20lose%20one%20at%20each%20turn%29.%20We%20also%20save%20the%20HTML%20element%20%28usually%20a%20div%29%20so%20we%20can%20replace%20its%20contents.%0A%09diceLeft%20is%20a%20Dice%20Object%20that%20contains%20an%20array%20of%20values%20representing%20the%20value%20of%20each%20die%20and%20allows%20us%20to%20choose%20the%20correct%20image%20for%20that%20die%20from%20the%20collection%20of%20imagePaths%22%0A%0A%09%7C%20imageSrc%20diceNum%20%20%7C%0A%0A%09element%20isNil%20ifTrue%3A%5B%0A%09%09element%20%3A%3D%20html%20div.%0A%09%09element%20id%3A%20%27dice%27%20.%0A%09%5D.%0A%09element%20empty.%0A%09element%20contents%3A%5B%0A%09%091%20to%3A%20%28model%20size%29%20do%3A%5B%20%3Aindex%20%7C%0A%09%09%09diceNum%20%3A%3D%20model%20at%3A%20index.%0A%09%09%09imageSrc%20%3A%3D%20imagePaths%20at%3A%20diceNum.%0A%09%09%09%28html%20img%3A%20imageSrc%29%20%20height%3A100%3B%20width%3A%20100%3B%20style%3A%20%27margin-right%3A15px%3B%27.%0A%09%09%5D.%0A%09%5D.%0A'),
+messageSends: ["ifTrue:", "isNil", "div", "id:", "empty", "contents:", "to:do:", "size", "at:", "height:", "width:", "style:", "img:"],
 referencedClasses: []
 }),
 smalltalk.DiceView);
@@ -800,6 +781,24 @@ args: [],
 source: unescape('initialize%0A%09%22comment%20stating%20purpose%20of%20message%22%0A%0A%20%20%20%20%20%20%20%20super%20initialize.%0A%09self%20createImagePaths.%0A'),
 messageSends: ["initialize", "createImagePaths"],
 referencedClasses: []
+}),
+smalltalk.DiceView);
+
+smalltalk.addMethod(
+unescape('_example'),
+smalltalk.method({
+selector: unescape('example'),
+category: 'examples',
+fn: function (){
+var self=this;
+smalltalk.send(self, "_on_", [smalltalk.send((smalltalk.Dice || Dice), "_new", [])]);
+smalltalk.send(self['@model'], "_roll", []);
+smalltalk.send(self, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);
+return self;},
+args: [],
+source: unescape('example%0A%09%22create%20an%20example%20of%20myself%20ready%20to%20display%20in%20a%20web%20page%22%0A%0A%09self%20on%3A%20%28Dice%20new%20%29.%0A%09model%20roll.%0A%09%20self%20%20appendToJQuery%3A%20%27body%27%20asJQuery.%0A'),
+messageSends: ["on:", "new", "roll", "appendToJQuery:", "asJQuery"],
+referencedClasses: ["Dice"]
 }),
 smalltalk.DiceView);
 

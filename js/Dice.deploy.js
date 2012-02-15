@@ -234,8 +234,8 @@ selector: unescape('roll'),
 fn: function (){
 var self=this;
 var val=nil;
-(self['@dice']=smalltalk.send((smalltalk.Array || Array), "_new_", [smalltalk.send(self, "_getNumDice", [])]));
-smalltalk.send((1), "_to_do_", [smalltalk.send(self, "_getNumDice", []), (function(i){(val=smalltalk.send(smalltalk.send((1), "_to_", [self['@numSides']]), "_atRandom", []));return smalltalk.send(self['@dice'], "_at_put_", [i, val]);})]);
+(self['@dice']=smalltalk.send((smalltalk.Array || Array), "_new_", [self['@numDice']]));
+smalltalk.send((1), "_to_do_", [self['@numDice'], (function(i){(val=smalltalk.send(smalltalk.send((1), "_to_", [self['@numSides']]), "_atRandom", []));return smalltalk.send(self['@dice'], "_at_put_", [i, val]);})]);
 return self['@dice'];
 return self;}
 }),
@@ -267,28 +267,6 @@ return self;}
 smalltalk.Dice);
 
 smalltalk.addMethod(
-unescape('_setNumDice_'),
-smalltalk.method({
-selector: unescape('setNumDice%3A'),
-fn: function (num){
-var self=this;
-(self['@numDice']=num);
-return self;}
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
-unescape('_getNumDice'),
-smalltalk.method({
-selector: unescape('getNumDice'),
-fn: function (){
-var self=this;
-return self['@numDice'];
-return self;}
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
 unescape('_at_'),
 smalltalk.method({
 selector: unescape('at%3A'),
@@ -300,24 +278,23 @@ return self;}
 smalltalk.Dice);
 
 smalltalk.addMethod(
-unescape('_getNumSides'),
-smalltalk.method({
-selector: unescape('getNumSides'),
-fn: function (){
-var self=this;
-smalltalk.send(smalltalk.send(self['@numSides'], "_isNil", []), "_iftrue_", [(function(){return (self['@numSides']=(6));})]);
-return self['@numSides'];
-return self;}
-}),
-smalltalk.Dice);
-
-smalltalk.addMethod(
 unescape('_remove'),
 smalltalk.method({
 selector: unescape('remove'),
 fn: function (){
 var self=this;
 smalltalk.send(self['@dice'], "_removeLast", []);
+return self;}
+}),
+smalltalk.Dice);
+
+smalltalk.addMethod(
+unescape('_getDice'),
+smalltalk.method({
+selector: unescape('getDice'),
+fn: function (){
+var self=this;
+return self['@dice'];
 return self;}
 }),
 smalltalk.Dice);
@@ -354,6 +331,17 @@ selector: unescape('on%3A'),
 fn: function (aModel){
 var self=this;
 (self['@model']=aModel);
+return self;}
+}),
+smalltalk.TDWidget);
+
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+fn: function (){
+var self=this;
+smalltalk.send(self, "_initialize", [], smalltalk.Widget);
 return self;}
 }),
 smalltalk.TDWidget);
@@ -542,8 +530,6 @@ fn: function (html){
 var self=this;
 var imageSrc=nil;
 var diceNum=nil;
-var diceShowing=nil;
-(self['@diceShowing']=smalltalk.send(self['@model'], "_diceLeft", []));
 ((($receiver = smalltalk.send(self['@element'], "_isNil", [])).klass === smalltalk.Boolean) ? ($receiver ? (function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})]));
 smalltalk.send(self['@element'], "_empty", []);
 smalltalk.send(self['@element'], "_contents_", [(function(){return smalltalk.send((1), "_to_do_", [smalltalk.send(self['@model'], "_size", []), (function(index){(diceNum=smalltalk.send(self['@model'], "_at_", [index]));(imageSrc=smalltalk.send(self['@imagePaths'], "_at_", [diceNum]));return (function($rec){smalltalk.send($rec, "_height_", [(100)]);smalltalk.send($rec, "_width_", [(100)]);return smalltalk.send($rec, "_style_", [unescape("margin-right%3A15px%3B")]);})(smalltalk.send(html, "_img_", [imageSrc]));})]);})]);
@@ -576,6 +562,19 @@ fn: function (){
 var self=this;
 smalltalk.send(self, "_initialize", [], smalltalk.TDWidget);
 smalltalk.send(self, "_createImagePaths", []);
+return self;}
+}),
+smalltalk.DiceView);
+
+smalltalk.addMethod(
+unescape('_example'),
+smalltalk.method({
+selector: unescape('example'),
+fn: function (){
+var self=this;
+smalltalk.send(self, "_on_", [smalltalk.send((smalltalk.Dice || Dice), "_new", [])]);
+smalltalk.send(self['@model'], "_roll", []);
+smalltalk.send(self, "_appendToJQuery_", [smalltalk.send("body", "_asJQuery", [])]);
 return self;}
 }),
 smalltalk.DiceView);

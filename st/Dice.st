@@ -171,29 +171,16 @@ I represent a number of individual die (dice) to form what we refer to as a set 
 
 !Dice methodsFor: 'access'!
 
-setNumDice: num
-	"set the number of dice ledt in this player's hand"
-
-	numDice := num.
-!
-
-getNumDice
-	"the number of dice ledt in this player's hand"
-
-	^ numDice
-!
-
 at: anIndex
 	"return the value at anIndex"
 
 	^ dice at: anIndex
 !
 
-getNumSides
-	"return the number of sides on a dice"
+getDice
+	"return the low level array of values. Only meant to be used by views and the like"
 
-	numSides isNil iftrue:[ numSides := 6].
-	^ numSides
+	^ dice
 ! !
 
 !Dice methodsFor: 'initialization'!
@@ -213,9 +200,8 @@ roll
 	"roll my dice randomly"
 
 	|  val |
-	dice := Array new: (self getNumDice).
-	1 to: ( self getNumDice ) do:[ :i |
-		"this hardcoded value of 6 will need to change if normal dice ever have more or less sides"
+	dice := Array new: numDice.
+	1 to: numDice do:[ :i |
 		val := ( 1 to: ( numSides )) atRandom.
 		dice at: i put: val.
 	].
@@ -259,6 +245,12 @@ on: aModel
 	"set the model that I am viewing - the same as calling the setter, just a matter of preference"
 
 	model := aModel
+! !
+
+!TDWidget methodsFor: 'initialization'!
+
+initialize
+	super initialize
 ! !
 
 !TDWidget class methodsFor: 'instantiation'!
@@ -418,6 +410,16 @@ TDWidget subclass: #DiceView
 	instanceVariableNames: 'imagePaths diceShowing diceDiv'
 	category: 'Dice'!
 
+!DiceView methodsFor: 'examples'!
+
+example
+	"create an example of myself ready to display in a web page"
+
+	self on: (Dice new ).
+	model roll.
+	 self  appendToJQuery: 'body' asJQuery.
+! !
+
 !DiceView methodsFor: 'initialization'!
 
 initialize
@@ -446,9 +448,8 @@ renderOn: html
 	"we should already know the dice that we are displaying by asking the model (we start with a set number, but the player can lose one at each turn). We also save the HTML element (usually a div) so we can replace its contents.
 	diceLeft is a Dice Object that contains an array of values representing the value of each die and allows us to choose the correct image for that die from the collection of imagePaths"
 
-	| imageSrc diceNum diceShowing |
+	| imageSrc diceNum  |
 
-	diceShowing := model diceLeft.
 	element isNil ifTrue:[
 		element := html div.
 		element id: 'dice' .
