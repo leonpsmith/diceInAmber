@@ -1,0 +1,23 @@
+Tips and Tricks for Using Amber Smalltalk
+
+I learned these the hard way, so I hope by sharing them you can avoid some lost time and effort. 
+
+As they say, there are three kinds of developers:
+1. Those who learn from their own mistakes. These are wise.
+2. Those who learn from the mistakes of others. These are happy.
+3. Those who refuse to learn from their own mistakes or those of others. These are fools.
+
+Here are the Tips:
+
+1. Sign up at Github.com. Its free to join and this lets you look at other people's repositories and download them to your own machine as a local repository. Its very reasonable to upgrade to the micro plan (currently $ 7/ month) which gives you up to 5 repositories and no collaborators. Perfect for a lone developer. They also have team-oriented plans available that are very cheap.
+
+2. Learn the basic git commands. They are very straightforward, just Google "Git commands reference" or similar. For those of you familiar with other versioning tools, with Git, a "commit" commits all changes to your local repo, but not the one on Github. For that, you need to do a "push" after the commit.
+
+3. Since Amber creates a Smalltalk runtime in Javascript within your browser, there are times you can't figure out what's going wrong until you look at the Javascript. So become familiar with the developer tools your browser offers. Both Firefox and Chrome have excellent Javascript consoles and debuggers. There are plugins available to help even more, but some may interfere with the way your code works so just keep that in mind.
+
+4. Follow the Amber-lang group on Google where the experts hang out. Chances are someone else has had your problem and others have helped them solve it.
+
+5. Actually do some of the tutorials available at amber-lang.net and check out the lnks to the wiki and other tutorials.
+
+6. Do NOT forget to "commit" your package before closing your browser. If you do forget you will lose ALL of your work.I typically commit the Package after any significant changes. "Significant" means anything I don't want to lose.
+
