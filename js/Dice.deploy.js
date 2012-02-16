@@ -1,229 +1,60 @@
 smalltalk.addPackage('Dice', {});
-smalltalk.addClass('Player', smalltalk.Object, ['id', 'name', 'userName', 'tavern', 'key', 'dice'], 'Dice');
+smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas', 'element'], 'Dice');
 smalltalk.addMethod(
-unescape('_exampleInTavern_'),
+unescape('_model'),
 smalltalk.method({
-selector: unescape('exampleInTavern%3A'),
-fn: function (aTavern) {
-    var self = this;
-    self['@name'] = "Pete Shepard";
-    self['@userName'] = "liarPete";
-    self['@tavern'] = aTavern;
-    return self;
-}
+selector: unescape('model'),
+fn: function (){
+var self=this;
+return self['@model'];
+return self;}
 }),
-smalltalk.Player);
+smalltalk.TDWidget);
+
+smalltalk.addMethod(
+unescape('_model_'),
+smalltalk.method({
+selector: unescape('model%3A'),
+fn: function (aModel){
+var self=this;
+(self['@model']=aModel);
+return self;}
+}),
+smalltalk.TDWidget);
+
+smalltalk.addMethod(
+unescape('_on_'),
+smalltalk.method({
+selector: unescape('on%3A'),
+fn: function (aModel){
+var self=this;
+(self['@model']=aModel);
+return self;}
+}),
+smalltalk.TDWidget);
 
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
 selector: unescape('initialize'),
-fn: function () {
-    var self = this;
-    smalltalk.send(self, "_initialize", [], smalltalk.Object);
-    self['@dice'] = smalltalk.send(smalltalk.Dice || Dice, "_new", []);
-    return self;
-}
-}),
-smalltalk.Player);
-
-smalltalk.addMethod(
-unescape('_example'),
-smalltalk.method({
-selector: unescape('example'),
-fn: function () {
-    var self = this;
-    self['@name'] = "Pete Shepard";
-    self['@userName'] = "liarPete";
-    return self;
-}
-}),
-smalltalk.Player);
-
-smalltalk.addMethod(
-unescape('_dice'),
-smalltalk.method({
-selector: unescape('dice'),
 fn: function (){
 var self=this;
-return self['@dice'];
+smalltalk.send(self, "_initialize", [], smalltalk.Widget);
 return self;}
 }),
-smalltalk.Player);
-
-
-
-smalltalk.addClass('TavernDice', smalltalk.Object, ['repository', 'taverns'], 'Dice');
-smalltalk.addMethod(
-unescape('_initialize'),
-smalltalk.method({
-selector: unescape('initialize'),
-fn: function () {
-    var self = this;
-    smalltalk.send(self, "_initialize", [], smalltalk.Object);
-    self['@taverns'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
-    return self;
-}
-}),
-smalltalk.TavernDice);
-
-smalltalk.addMethod(
-unescape('_example'),
-smalltalk.method({
-selector: unescape('example'),
-fn: function () {
-    var self = this;
-    smalltalk.send(self['@taverns'], "_add_", [smalltalk.send(smalltalk.send(smalltalk.Tavern || Tavern, "_new", []), "_example", [])]);
-    return self;
-}
-}),
-smalltalk.TavernDice);
-
-smalltalk.addMethod(
-unescape('_taverns'),
-smalltalk.method({
-selector: unescape('taverns'),
-fn: function (){
-var self=this;
-return self['@taverns'];
-return self;}
-}),
-smalltalk.TavernDice);
-
-
-smalltalk.addMethod(
-unescape('_example'),
-smalltalk.method({
-selector: unescape('example'),
-fn: function (){
-var self=this;
-return smalltalk.send(smalltalk.send(self, "_new", []), "_example", []);
-return self;}
-}),
-smalltalk.TavernDice.klass);
-
-
-smalltalk.addClass('Game', smalltalk.Object, ['id', 'players', 'started', 'ended', 'winner', 'tavern'], 'Dice');
-smalltalk.addMethod(
-unescape('_initialize'),
-smalltalk.method({
-selector: unescape('initialize'),
-fn: function () {
-    var self = this;
-    self['@players'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
-    self['@started'] = smalltalk.send(smalltalk.send(smalltalk.Date || Date, "_now", []), "_asMilliseconds", []);
-    return self;
-}
-}),
-smalltalk.Game);
-
-smalltalk.addMethod(
-unescape('_addPlayer_'),
-smalltalk.method({
-selector: unescape('addPlayer%3A'),
-fn: function (aPlayer) {
-    var self = this;
-    smalltalk.send(self['@players'], "_add_", [aPlayer]);
-    return self;
-}
-}),
-smalltalk.Game);
-
-smalltalk.addMethod(
-unescape('_setTavern_'),
-smalltalk.method({
-selector: unescape('setTavern%3A'),
-fn: function (aTavern) {
-    var self = this;
-    self['@tavern'] = aTavern;
-    return self;
-}
-}),
-smalltalk.Game);
-
-smalltalk.addMethod(
-unescape('_players'),
-smalltalk.method({
-selector: unescape('players'),
-fn: function (){
-var self=this;
-return self['@players'];
-return self;}
-}),
-smalltalk.Game);
+smalltalk.TDWidget);
 
 
 smalltalk.addMethod(
 unescape('_on_'),
 smalltalk.method({
 selector: unescape('on%3A'),
-fn: function (aTavern){
+fn: function (aModel){
 var self=this;
-return smalltalk.send(smalltalk.send(self, "_new", []), "_setTavern_", [aTavern]);
+return smalltalk.send(smalltalk.send(self, "_new", []), "_on_", [aModel]);
 return self;}
 }),
-smalltalk.Game.klass);
-
-
-smalltalk.addClass('Tavern', smalltalk.Object, ['id', 'name', 'city', 'state', 'maxSeats', 'numSeatsFilled', 'games', 'created', 'updated'], 'Dice');
-smalltalk.addMethod(
-unescape('_example'),
-smalltalk.method({
-selector: unescape('example'),
-fn: function () {
-    var self = this;
-    var game = nil;
-    var player = nil;
-    self['@name'] = "Kings Tavern";
-    self['@city'] = "Paradise";
-    self['@state'] = "CA";
-    self['@maxSeats'] = 10;
-    self['@numSeatsFilled'] = 1;
-    game = smalltalk.send(smalltalk.send(smalltalk.Game || Game, "_new", []), "_setTavern_", [self]);
-    smalltalk.send(self['@games'], "_add_", [game]);
-    player = smalltalk.send(smalltalk.send(smalltalk.Player || Player, "_new", []), "_example", []);
-    smalltalk.send(game, "_addPlayer_", [player]);
-    return self;
-}
-}),
-smalltalk.Tavern);
-
-smalltalk.addMethod(
-unescape('_initialize'),
-smalltalk.method({
-selector: unescape('initialize'),
-fn: function () {
-    var self = this;
-    smalltalk.send(self, "_initialize", [], smalltalk.Object);
-    self['@games'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
-    return self;
-}
-}),
-smalltalk.Tavern);
-
-smalltalk.addMethod(
-unescape('_getName'),
-smalltalk.method({
-selector: unescape('getName'),
-fn: function () {
-    var self = this;
-    return self['@name'];
-    return self;
-}
-}),
-smalltalk.Tavern);
-
-smalltalk.addMethod(
-unescape('_games'),
-smalltalk.method({
-selector: unescape('games'),
-fn: function (){
-var self=this;
-return self['@games'];
-return self;}
-}),
-smalltalk.Tavern);
-
+smalltalk.TDWidget.klass);
 
 
 smalltalk.addClass('Dice', smalltalk.Object, ['id', 'gameID', 'liarID', 'dice', 'numDice', 'numSides'], 'Dice');
@@ -301,62 +132,231 @@ smalltalk.Dice);
 
 
 
-smalltalk.addClass('TDWidget', smalltalk.Widget, ['model', 'canvas', 'element'], 'Dice');
+smalltalk.addClass('Tavern', smalltalk.Object, ['id', 'name', 'city', 'state', 'maxSeats', 'numSeatsFilled', 'games', 'created', 'updated'], 'Dice');
 smalltalk.addMethod(
-unescape('_model'),
+unescape('_example'),
 smalltalk.method({
-selector: unescape('model'),
-fn: function (){
-var self=this;
-return self['@model'];
-return self;}
+selector: unescape('example'),
+fn: function () {
+    var self = this;
+    var game = nil;
+    var player = nil;
+    self['@name'] = "Kings Tavern";
+    self['@city'] = "Paradise";
+    self['@state'] = "CA";
+    self['@maxSeats'] = 10;
+    self['@numSeatsFilled'] = 1;
+    game = smalltalk.send(smalltalk.send(smalltalk.Game || Game, "_new", []), "_setTavern_", [self]);
+    smalltalk.send(self['@games'], "_add_", [game]);
+    player = smalltalk.send(smalltalk.send(smalltalk.Player || Player, "_new", []), "_example", []);
+    smalltalk.send(game, "_addPlayer_", [player]);
+    return self;
+}
 }),
-smalltalk.TDWidget);
-
-smalltalk.addMethod(
-unescape('_model_'),
-smalltalk.method({
-selector: unescape('model%3A'),
-fn: function (aModel){
-var self=this;
-(self['@model']=aModel);
-return self;}
-}),
-smalltalk.TDWidget);
-
-smalltalk.addMethod(
-unescape('_on_'),
-smalltalk.method({
-selector: unescape('on%3A'),
-fn: function (aModel){
-var self=this;
-(self['@model']=aModel);
-return self;}
-}),
-smalltalk.TDWidget);
+smalltalk.Tavern);
 
 smalltalk.addMethod(
 unescape('_initialize'),
 smalltalk.method({
 selector: unescape('initialize'),
+fn: function () {
+    var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
+    self['@games'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
+    return self;
+}
+}),
+smalltalk.Tavern);
+
+smalltalk.addMethod(
+unescape('_getName'),
+smalltalk.method({
+selector: unescape('getName'),
+fn: function () {
+    var self = this;
+    return self['@name'];
+    return self;
+}
+}),
+smalltalk.Tavern);
+
+smalltalk.addMethod(
+unescape('_games'),
+smalltalk.method({
+selector: unescape('games'),
 fn: function (){
 var self=this;
-smalltalk.send(self, "_initialize", [], smalltalk.Widget);
+return self['@games'];
 return self;}
 }),
-smalltalk.TDWidget);
+smalltalk.Tavern);
+
+
+
+smalltalk.addClass('Game', smalltalk.Object, ['id', 'players', 'started', 'ended', 'winner', 'tavern'], 'Dice');
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+fn: function () {
+    var self = this;
+    self['@players'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
+    self['@started'] = smalltalk.send(smalltalk.send(smalltalk.Date || Date, "_now", []), "_asMilliseconds", []);
+    return self;
+}
+}),
+smalltalk.Game);
+
+smalltalk.addMethod(
+unescape('_addPlayer_'),
+smalltalk.method({
+selector: unescape('addPlayer%3A'),
+fn: function (aPlayer) {
+    var self = this;
+    smalltalk.send(self['@players'], "_add_", [aPlayer]);
+    return self;
+}
+}),
+smalltalk.Game);
+
+smalltalk.addMethod(
+unescape('_setTavern_'),
+smalltalk.method({
+selector: unescape('setTavern%3A'),
+fn: function (aTavern) {
+    var self = this;
+    self['@tavern'] = aTavern;
+    return self;
+}
+}),
+smalltalk.Game);
+
+smalltalk.addMethod(
+unescape('_players'),
+smalltalk.method({
+selector: unescape('players'),
+fn: function (){
+var self=this;
+return self['@players'];
+return self;}
+}),
+smalltalk.Game);
 
 
 smalltalk.addMethod(
 unescape('_on_'),
 smalltalk.method({
 selector: unescape('on%3A'),
-fn: function (aModel){
+fn: function (aTavern){
 var self=this;
-return smalltalk.send(smalltalk.send(self, "_new", []), "_on_", [aModel]);
+return smalltalk.send(smalltalk.send(self, "_new", []), "_setTavern_", [aTavern]);
 return self;}
 }),
-smalltalk.TDWidget.klass);
+smalltalk.Game.klass);
+
+
+smalltalk.addClass('TavernDice', smalltalk.Object, ['repository', 'taverns'], 'Dice');
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+fn: function () {
+    var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
+    self['@taverns'] = smalltalk.send(smalltalk.OrderedCollection || OrderedCollection, "_new", []);
+    return self;
+}
+}),
+smalltalk.TavernDice);
+
+smalltalk.addMethod(
+unescape('_example'),
+smalltalk.method({
+selector: unescape('example'),
+fn: function () {
+    var self = this;
+    smalltalk.send(self['@taverns'], "_add_", [smalltalk.send(smalltalk.send(smalltalk.Tavern || Tavern, "_new", []), "_example", [])]);
+    return self;
+}
+}),
+smalltalk.TavernDice);
+
+smalltalk.addMethod(
+unescape('_taverns'),
+smalltalk.method({
+selector: unescape('taverns'),
+fn: function (){
+var self=this;
+return self['@taverns'];
+return self;}
+}),
+smalltalk.TavernDice);
+
+
+smalltalk.addMethod(
+unescape('_example'),
+smalltalk.method({
+selector: unescape('example'),
+fn: function (){
+var self=this;
+return smalltalk.send(smalltalk.send(self, "_new", []), "_example", []);
+return self;}
+}),
+smalltalk.TavernDice.klass);
+
+
+smalltalk.addClass('Player', smalltalk.Object, ['id', 'name', 'userName', 'tavern', 'key', 'dice'], 'Dice');
+smalltalk.addMethod(
+unescape('_exampleInTavern_'),
+smalltalk.method({
+selector: unescape('exampleInTavern%3A'),
+fn: function (aTavern) {
+    var self = this;
+    self['@name'] = "Pete Shepard";
+    self['@userName'] = "liarPete";
+    self['@tavern'] = aTavern;
+    return self;
+}
+}),
+smalltalk.Player);
+
+smalltalk.addMethod(
+unescape('_initialize'),
+smalltalk.method({
+selector: unescape('initialize'),
+fn: function () {
+    var self = this;
+    smalltalk.send(self, "_initialize", [], smalltalk.Object);
+    self['@dice'] = smalltalk.send(smalltalk.Dice || Dice, "_new", []);
+    return self;
+}
+}),
+smalltalk.Player);
+
+smalltalk.addMethod(
+unescape('_example'),
+smalltalk.method({
+selector: unescape('example'),
+fn: function () {
+    var self = this;
+    self['@name'] = "Pete Shepard";
+    self['@userName'] = "liarPete";
+    return self;
+}
+}),
+smalltalk.Player);
+
+smalltalk.addMethod(
+unescape('_dice'),
+smalltalk.method({
+selector: unescape('dice'),
+fn: function (){
+var self=this;
+return self['@dice'];
+return self;}
+}),
+smalltalk.Player);
+
 
 
 smalltalk.addClass('TavernDiceView', smalltalk.TDWidget, ['imagePaths', 'header', 'diceShowing', 'diceDiv'], 'Dice');
@@ -530,9 +530,9 @@ fn: function (html){
 var self=this;
 var imageSrc=nil;
 var diceNum=nil;
-((($receiver = smalltalk.send(self['@element'], "_isNil", [])).klass === smalltalk.Boolean) ? ($receiver ? (function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){(self['@element']=smalltalk.send(html, "_div", []));return smalltalk.send(self['@element'], "_id_", ["dice"]);})]));
+((($receiver = smalltalk.send(self['@element'], "_isNil", [])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (self['@element']=smalltalk.send(smalltalk.send(html, "_div", []), "_id_", [unescape("body%20%3E%20dice")]));})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (self['@element']=smalltalk.send(smalltalk.send(html, "_div", []), "_id_", [unescape("body%20%3E%20dice")]));})]));
 smalltalk.send(self['@element'], "_empty", []);
-smalltalk.send(self['@element'], "_contents_", [(function(){return smalltalk.send((1), "_to_do_", [smalltalk.send(self['@model'], "_size", []), (function(index){(diceNum=smalltalk.send(self['@model'], "_at_", [index]));(imageSrc=smalltalk.send(self['@imagePaths'], "_at_", [diceNum]));return (function($rec){smalltalk.send($rec, "_height_", [(100)]);smalltalk.send($rec, "_width_", [(100)]);return smalltalk.send($rec, "_style_", [unescape("margin-right%3A15px%3B")]);})(smalltalk.send(html, "_img_", [imageSrc]));})]);})]);
+smalltalk.send(self['@element'], "_append_", [(function(){return smalltalk.send((1), "_to_do_", [smalltalk.send(self['@model'], "_size", []), (function(index){(diceNum=smalltalk.send(self['@model'], "_at_", [index]));(imageSrc=smalltalk.send(self['@imagePaths'], "_at_", [diceNum]));return (function($rec){smalltalk.send($rec, "_height_", [(100)]);smalltalk.send($rec, "_width_", [(100)]);return smalltalk.send($rec, "_style_", [unescape("margin-right%3A15px%3B")]);})(smalltalk.send(html, "_img_", [imageSrc]));})]);})]);
 return self;}
 }),
 smalltalk.DiceView);

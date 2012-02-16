@@ -1,166 +1,43 @@
 Smalltalk current createPackage: 'Dice' properties: #{}!
-Object subclass: #Player
-	instanceVariableNames: 'id name userName tavern key dice'
+Widget subclass: #TDWidget
+	instanceVariableNames: 'model canvas element'
 	category: 'Dice'!
+!TDWidget commentStamp!
+TDWidget is the superclass for all of the Views in the TavernDice Application. Following the tested and true axiom of keeping your model separate from the views (MVC), the model object should have no knowledge of the View. 
+The View does know about the model it is displaying and in a lot of cases also assumes the role of the Controller Object in a tradional MVC (Model View Controller) architecture.!
 
-!Player methodsFor: 'access'!
+!TDWidget methodsFor: 'access'!
 
-dice
-	"return an object that represents my dice"
+model
+	"return the model that I am viewing"
 
-	^ dice
-! !
-
-!Player methodsFor: 'examples'!
-
-exampleInTavern: aTavern
-	"fill myself in for examples and testing"
-
-	name := 'Pete Shepard'.
-	userName := 'liarPete'.
-	tavern := aTavern.
+	^ model
 !
 
-example
-	"fill myself in for examples and testing"
+model: aModel
+	"set the model that I am viewing"
 
-	name := 'Pete Shepard'.
-	userName := 'liarPete'.
-! !
-
-!Player methodsFor: 'initialization'!
-
-initialize
-	"get ready to be used"
-
-	super initialize.
-	dice := Dice new.
-! !
-
-Object subclass: #TavernDice
-	instanceVariableNames: 'repository taverns'
-	category: 'Dice'!
-!TavernDice commentStamp!
-TavernDice is the Model of the tavernDice application. The TavernDiceView will serve as both View and Controller until we see the beed to refactor that!
-
-!TavernDice methodsFor: 'access'!
-
-taverns
-	"return my collection of known taverns"
-
-	^ taverns
-! !
-
-!TavernDice methodsFor: 'examples'!
-
-example
-	"fill myself in for example and test purposes"
-
-	taverns add: (Tavern new example).
-! !
-
-!TavernDice methodsFor: 'initialization'!
-
-initialize
-	super initialize.
-	taverns := OrderedCollection new.
-! !
-
-!TavernDice class methodsFor: 'example'!
-
-example
-	"fill myself just for examples or testing and open a view on myself"
-
-	^ self new example.
-! !
-
-Object subclass: #Game
-	instanceVariableNames: 'id players started ended winner tavern'
-	category: 'Dice'!
-
-!Game methodsFor: 'access'!
-
-players
-	"return the Liars that are playing this game"
-
-	^ players
-! !
-
-!Game methodsFor: 'initialization'!
-
-initialize
-	"comment stating purpose of message"
-
-	players := OrderedCollection new.
-	started := Date now asMilliseconds.
+	model := aModel
 !
 
-addPlayer: aPlayer
-	"they want me to add aPlayer to the game. In the future I might throw an exception if too few seats or something"
+on: aModel
+	"set the model that I am viewing - the same as calling the setter, just a matter of preference"
 
-	players add: aPlayer
-!
-
-setTavern: aTavern
-
-	"where i am being played"
-
-	tavern := aTavern
+	model := aModel
 ! !
 
-!Game class methodsFor: 'not yet classified'!
-
-on: aTavern
-	"comment stating purpose of message"
-
-	^( self new ) setTavern: aTavern
-! !
-
-Object subclass: #Tavern
-	instanceVariableNames: 'id name city state maxSeats numSeatsFilled games created updated'
-	category: 'Dice'!
-
-!Tavern methodsFor: 'access'!
-
-games
-	"return the collection of games taking place at this Tavern"
-
-	^ games
-! !
-
-!Tavern methodsFor: 'examples'!
-
-example
-	"fill me for testing or example"
-
-	| game player |
-
-	name := 'Kings Tavern'.
-	city := 'Paradise'.
-	state := 'CA'.
-	maxSeats := 10.
-	numSeatsFilled := 1.
-
-	game := Game new setTavern: self.
-	games add: game.
-
-	player := Player new example.
-	game addPlayer: player.
-!
-
-getName
-	"return my human friendly name"
-
-          ^ name
-! !
-
-!Tavern methodsFor: 'initialization'!
+!TDWidget methodsFor: 'initialization'!
 
 initialize
-	"get ready to roll"
+	super initialize
+! !
 
-	super initialize.
- 	games := OrderedCollection new.
+!TDWidget class methodsFor: 'instantiation'!
+
+on: aModel
+	"create an instance of this view class and set its model object to be aModel"
+
+	^ self new on: aModel
 ! !
 
 Object subclass: #Dice
@@ -220,45 +97,168 @@ remove
 	dice removeLast.
 ! !
 
-Widget subclass: #TDWidget
-	instanceVariableNames: 'model canvas element'
+Object subclass: #Tavern
+	instanceVariableNames: 'id name city state maxSeats numSeatsFilled games created updated'
 	category: 'Dice'!
-!TDWidget commentStamp!
-TDWidget is the superclass for all of the Views in the TavernDice Application. Following the tested and true axiom of keeping your model separate from the views (MVC), the model object should have no knowledge of the View. 
-The View does know about the model it is displaying and in a lot of cases also assumes the role of the Controller Object in a tradional MVC (Model View Controller) architecture.!
 
-!TDWidget methodsFor: 'access'!
+!Tavern methodsFor: 'access'!
 
-model
-	"return the model that I am viewing"
+games
+	"return the collection of games taking place at this Tavern"
 
-	^ model
-!
-
-model: aModel
-	"set the model that I am viewing"
-
-	model := aModel
-!
-
-on: aModel
-	"set the model that I am viewing - the same as calling the setter, just a matter of preference"
-
-	model := aModel
+	^ games
 ! !
 
-!TDWidget methodsFor: 'initialization'!
+!Tavern methodsFor: 'examples'!
+
+example
+	"fill me for testing or example"
+
+	| game player |
+
+	name := 'Kings Tavern'.
+	city := 'Paradise'.
+	state := 'CA'.
+	maxSeats := 10.
+	numSeatsFilled := 1.
+
+	game := Game new setTavern: self.
+	games add: game.
+
+	player := Player new example.
+	game addPlayer: player.
+!
+
+getName
+	"return my human friendly name"
+
+          ^ name
+! !
+
+!Tavern methodsFor: 'initialization'!
 
 initialize
-	super initialize
+	"get ready to roll"
+
+	super initialize.
+ 	games := OrderedCollection new.
 ! !
 
-!TDWidget class methodsFor: 'instantiation'!
+Object subclass: #Game
+	instanceVariableNames: 'id players started ended winner tavern'
+	category: 'Dice'!
 
-on: aModel
-	"create an instance of this view class and set its model object to be aModel"
+!Game methodsFor: 'access'!
 
-	^ self new on: aModel
+players
+	"return the Liars that are playing this game"
+
+	^ players
+! !
+
+!Game methodsFor: 'initialization'!
+
+initialize
+	"comment stating purpose of message"
+
+	players := OrderedCollection new.
+	started := Date now asMilliseconds.
+!
+
+addPlayer: aPlayer
+	"they want me to add aPlayer to the game. In the future I might throw an exception if too few seats or something"
+
+	players add: aPlayer
+!
+
+setTavern: aTavern
+
+	"where i am being played"
+
+	tavern := aTavern
+! !
+
+!Game class methodsFor: 'not yet classified'!
+
+on: aTavern
+	"comment stating purpose of message"
+
+	^( self new ) setTavern: aTavern
+! !
+
+Object subclass: #TavernDice
+	instanceVariableNames: 'repository taverns'
+	category: 'Dice'!
+!TavernDice commentStamp!
+TavernDice is the Model of the tavernDice application. The TavernDiceView will serve as both View and Controller until we see the beed to refactor that!
+
+!TavernDice methodsFor: 'access'!
+
+taverns
+	"return my collection of known taverns"
+
+	^ taverns
+! !
+
+!TavernDice methodsFor: 'examples'!
+
+example
+	"fill myself in for example and test purposes"
+
+	taverns add: (Tavern new example).
+! !
+
+!TavernDice methodsFor: 'initialization'!
+
+initialize
+	super initialize.
+	taverns := OrderedCollection new.
+! !
+
+!TavernDice class methodsFor: 'example'!
+
+example
+	"fill myself just for examples or testing and open a view on myself"
+
+	^ self new example.
+! !
+
+Object subclass: #Player
+	instanceVariableNames: 'id name userName tavern key dice'
+	category: 'Dice'!
+
+!Player methodsFor: 'access'!
+
+dice
+	"return an object that represents my dice"
+
+	^ dice
+! !
+
+!Player methodsFor: 'examples'!
+
+exampleInTavern: aTavern
+	"fill myself in for examples and testing"
+
+	name := 'Pete Shepard'.
+	userName := 'liarPete'.
+	tavern := aTavern.
+!
+
+example
+	"fill myself in for examples and testing"
+
+	name := 'Pete Shepard'.
+	userName := 'liarPete'.
+! !
+
+!Player methodsFor: 'initialization'!
+
+initialize
+	"get ready to be used"
+
+	super initialize.
+	dice := Dice new.
 ! !
 
 TDWidget subclass: #TavernDiceView
@@ -450,12 +450,13 @@ renderOn: html
 
 	| imageSrc diceNum  |
 
-	element isNil ifTrue:[
-		element := html div.
-		element id: 'dice' .
-	].
+		element isNil  ifTrue:[
+			element := html div id: 'body > dice'.
+			"element id: 'dice' ."
+			"html appendToJQuery: '#dice' asJQuery."
+		].
 	element empty.
-	element contents:[
+	element append:[
 		1 to: (model size) do:[ :index |
 			diceNum := model at: index.
 			imageSrc := imagePaths at: diceNum.
